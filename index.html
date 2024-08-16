@@ -4,44 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-
-        button {
-            width: 33%;
-            height: 33%;
-
-
-        }
-
-        .ddd {
-            height: 100%;
-            font-size: xx-large;
-
-        }
-
-        button {
-            font-size: xx-large;
-        }
-    </style>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="ddd" onclick="changer()" id="bigboy">
-        <div id="dcla">it is O turn
+        <div id="dcla">It is O's turn</div>
 
+        <div class="buttons-container">
+            <div class="button-row">
+                <button value="1">-</button>
+                <button value="2">-</button>
+                <button value="3">-</button>
+            </div>
+            <div class="button-row">
+                <button value="4">-</button>
+                <button value="5">-</button>
+                <button value="6">-</button>
+            </div>
+            <div class="button-row">
+                <button value="7">-</button>
+                <button value="8">-</button>
+                <button value="9">-</button>
+            </div>
         </div>
-
-        <button value=1>-</button><button value=2>-</button><button value=3>-</button>
-        <br>
-        <button value=4>-</button><button value=5>-</button><button value=6>-</button>
-        <br>
-        <button value=7>-</button><button value=8>-</button><button value=9>-</button>
-        <br>
     </div>
     <script>
         let Turn = false
@@ -49,8 +36,8 @@
         function changer() {
 
             if (event.target.innerHTML == "-") {
-                dcla.innerHTML = `it is ${(Turn) ? "0" : "X"} turn`
-                event.target.innerHTML = (Turn) ? "x" : "O";
+                dcla.innerHTML = `It is ${(Turn) ? "O" : "X"}'s turn`
+                event.target.innerHTML = (Turn) ? "X" : "O";
                 Turn = !Turn;
 
                 ar[event.target.value - 1] = (Turn) ? 0 : 1;
@@ -86,24 +73,19 @@
             }
         }
 
-            function cross() {
-                if (ar[4] == ar[0] && ar[4] == ar[8] && ar[4] != null) {
-                    win()
-                }
-                if (ar[4] == ar[2] && ar[4] == ar[6] && ar[4] != null) {
-                    win()
-                }
-
+        function cross() {
+            if (ar[4] == ar[0] && ar[4] == ar[8] && ar[4] != null) {
+                win()
             }
-
-        
-
-        function win() {
-
-            bigboy.innerHTML = `the winner is ${event.target.innerHTML}`
+            if (ar[4] == ar[2] && ar[4] == ar[6] && ar[4] != null) {
+                win()
+            }
 
         }
 
+        function win() {
+            bigboy.innerHTML = `The winner is ${event.target.innerHTML}`
+        }
     </script>
 </body>
 
