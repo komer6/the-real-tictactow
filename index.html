@@ -9,8 +9,10 @@
 </head>
 
 <body>
+    <div id="winlistx"></div>
+    <div id="winlisto"></div>
     <div class="ddd" onclick="changer()" id="bigboy">
-        <div id="dcla">It is O's turn</div>
+        <div id="dcla"></div>
 
         <div class="buttons-container">
             <div class="button-row">
@@ -31,8 +33,16 @@
         </div>
     </div>
     <script>
+    xcounter=0;
+    ocounter=0;
+        winlistx.innerHTML=`x won ${xcounter} times <br>`
+        winlisto.innerHTML=`o won ${ocounter} times`
+        
+        
         let Turn = false
+        dcla.innerHTML = `It is ${(Turn) ? "O" : "X"}'s turn`
         let ar = new Array(9)
+        let xwinner="x";
         function changer() {
 
             if (event.target.innerHTML == "-") {
@@ -71,7 +81,7 @@
             if (ar[as - 1] == ar[as + 2] && ar[as - 1] == ar[as + 5] && ar[as - 1] != null) {
                 win()
             }
-        }
+        }5
 
         function cross() {
             if (ar[4] == ar[0] && ar[4] == ar[8] && ar[4] != null) {
@@ -84,7 +94,53 @@
         }
 
         function win() {
-            bigboy.innerHTML = `The winner is ${event.target.innerHTML}`
+            if(event.target.innerHTML=="X")
+        {
+            xcounter++;
+            xwinner="X";
+            
+        }
+        else
+        {
+            ocounter++;
+            xwinner="O";
+        }
+         winlistx.innerHTML=`x won ${xcounter} times </br>`
+        winlisto.innerHTML=`o won ${ocounter} times`
+        bigboy.innerHTML =""
+            bigboy.innerHTML = `The winner is ${xwinner}`
+            bigboy.innerHTML+= `<button onclick="rematch()"> rematch</button>`
+
+        }
+
+        function rematch() {
+            Turn = false
+            bigboy.innerHTML=`
+        <div id="dcla">It is O's turn</div>
+
+        <div class="buttons-container">
+            <div class="button-row">
+                <button value="1">-</button>
+                <button value="2">-</button>
+                <button value="3">-</button>
+            </div>
+            <div class="button-row">
+                <button value="4">-</button>
+                <button value="5">-</button>
+                <button value="6">-</button>
+            </div>
+            <div class="button-row">
+                <button value="7">-</button>
+                <button value="8">-</button>
+                <button value="9">-</button>
+            </div>
+        </div>
+    `
+    for (let index = 0; index < ar.length; index++) {
+        ar[index]=null;
+        
+    }
+            
         }
     </script>
 </body>
